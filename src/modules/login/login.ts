@@ -1,34 +1,29 @@
-import { inject } from 'aurelia-framework';
-import {EventAggregator} from "aurelia-event-aggregator";
-// import {WebAPI} from "./web-api";
-@inject(EventAggregator)
+import {inject} from 'aurelia-framework';
+import {AuthService} from '../../services/authService';
+import {Router} from 'aurelia-router';
+
+@inject(AuthService, Router)
 export class Login {
 
-  username;
-  password;
-  remember;
-  hasFocus;
+	public username: string;
+	public password: string;
 
-	constructor(api, ea) {
-		// this.api = api;
-		// this.ea = ea;
-
-		this.username = "";
-		this.password = "";
-		this.remember = false;
-	}
-
-	attached() {
-		this.hasFocus = true;
+	constructor(
+		private authService: AuthService,
+		private router: Router,
+	) {
 	}
 
 	login() {
-    alert('login success');
+		this.authService.login(this.username, this.password)
+			.then(data => {
+				if (data.token) {
+					alert('Login success');
+					this.router.navigateToRoute('');
+				} else {
+					alert(data.message);
+				}
+			});
 	}
 
-	get canSave() {
-    console.log(this.username);
-    return true;
-		// return this.email && this.password && !this.api.isRequesting;
-	}
 }
