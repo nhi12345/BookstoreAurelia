@@ -1,10 +1,14 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
+import {Constant} from 'constants/constatnt';
 
-@inject(HttpClient)
+@inject(HttpClient, Constant)
 export class HttpTokenInterceptor {
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private constant: Constant
+  ) {}
 
   public tokenInterceptor(): any {
     return {
@@ -20,10 +24,9 @@ export class HttpTokenInterceptor {
   }
 
   public configInterceptor() {
-    const baseUrl = "https://nga-book-api.herokuapp.com/api/";
     this.http.configure(config => {
       config
-        .withBaseUrl(baseUrl)
+        .withBaseUrl(this.constant.baseUrl)
         .withInterceptor(this.tokenInterceptor());
     });
   }
