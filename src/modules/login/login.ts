@@ -6,7 +6,7 @@ import {Router} from 'aurelia-router';
 export class Login {
 
 	public username: string;
-	public password: string;
+  public password: string;
 
 	constructor(
 		private authService: AuthService,
@@ -16,7 +16,7 @@ export class Login {
 
 	login() {
 		this.authService.login(this.username, this.password)
-			.then(data => {
+			.then((data: {token: string; message: string;}) => {
 				if (data.token) {
 					alert('Login success');
 					this.router.navigateToRoute('');

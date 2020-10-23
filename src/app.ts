@@ -1,23 +1,14 @@
+import { HttpTokenInterceptor } from './interceptors/http-token.interceptor';
 import {Router, RouterConfiguration} from 'aurelia-router';
 import {PLATFORM} from 'aurelia-pal';
-import { AuthService } from "services/authService";
 import { inject } from "aurelia-framework";
-import { HttpClient } from "aurelia-fetch-client";
-@inject(AuthService, HttpClient)
+@inject(HttpTokenInterceptor)
 export class App {
-  router: Router;
-  authService: AuthService;
-
-  constructor(authService, http) {
-    this.authService = authService;
-
-    const baseUrl = "https://nga-book-api.herokuapp.com/api/";
-
-    http.configure(config => {
-      config
-        .withBaseUrl(baseUrl)
-        .withInterceptor(this.authService.tokenInterceptor);
-    });
+  constructor(
+    private interceptor: HttpTokenInterceptor,
+    private router: Router,
+  ) {
+    this.interceptor.configInterceptor();
   }
 
   configureRouter(config: RouterConfiguration, router: Router) {

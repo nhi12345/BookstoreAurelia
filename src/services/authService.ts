@@ -1,49 +1,25 @@
 import {inject} from 'aurelia-framework';
-import {HttpClient, json} from 'aurelia-fetch-client';
-@inject(HttpClient)
+import {LoginRequest} from 'models/login/loginRequest';
+import {RequestService} from './requestService';
+@inject(RequestService)
 export class AuthService {
 
-    constructor(private http: HttpClient) {
-        // http = new HttpClient();
-    }
+  constructor(private requestService: RequestService) {
+  }
 
-    login(userName, password): any {
+  login(username: string, password: string): any {
+    let loginParams = new LoginRequest(username, password);
+    return this.requestService.post(loginParams, 'https://nga-book-api.herokuapp.com/api/auths/login')
+      .then((data: any) => {
+        if (data.token) {
+          window.localStorage.setItem("token", data.token);
+        }
+        return data;
+      });
+  }
 
-        return this.http.fetch('https://nga-book-api.herokuapp.com/api/auths/login', {
-            method: 'post',
-            body: json({username: userName, password: password})
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.token)
-                    window.localStorage.setItem("token", data.token);
-                return data;
-            })
-            .catch(error => {
-                console.log('Error retrieving token');
-            });
-    }
-
-    logOut() {
-        window.localStorage.removeItem("token");
-    }
-
-    getToken() {
-        return window.localStorage.getItem("token");
-    }
-
-    get tokenInterceptor() {
-        let auth = this;
-        return {
-            request(request) {
-                let token = auth.getToken();
-                if (token) {
-                    request.headers
-                        .append('authorization', `bearer ${token}`);
-                }
-                return request;
-            }
-        };
-    }
+  logOut() {
+    window.localStorage.removeItem("token");
+  }
 
 }
