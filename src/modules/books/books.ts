@@ -9,7 +9,7 @@ export class Books {
   constructor(private bookService: BookService) {
   }
 
-  created() {
+  public created() {
     this.bookService.getBooks().then((books: BookResponse[]) => {
       this.books = books;
     });
