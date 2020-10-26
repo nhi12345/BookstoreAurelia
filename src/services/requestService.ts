@@ -11,7 +11,7 @@ export class RequestService {
         method: 'post',
         body: json(params)
     })
-        .then(response => response.json())
+        .then(response => response.json());
     }
 
     public get(url: string): any {

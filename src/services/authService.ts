@@ -11,7 +11,7 @@ export class AuthService {
   ) {
   }
 
-  login(username: string, password: string): any {
+  public login(username: string, password: string): any {
     let loginParams = new LoginRequest(username, password);
     return this.requestService.post(loginParams, this.constant.authUrl)
       .then((data: any) => {
@@ -22,7 +22,7 @@ export class AuthService {
       });
   }
 
-  logOut() {
+  public logOut() {
     window.localStorage.removeItem("token");
   }
 

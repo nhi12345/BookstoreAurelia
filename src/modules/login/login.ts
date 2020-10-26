@@ -20,13 +20,12 @@ export class Login {
       .on(this);
   }
 
-  login() {
+  public login() {
     this.controller.validate().then(res => {
       if (res.valid) {
         this.authService.login(this.username, this.password)
           .then((data: {token: string; message: string;}) => {
             if (data.token) {
-              alert('Login success');
               this.router.navigateToRoute('books');
             } else {
               alert(data.message);
