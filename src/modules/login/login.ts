@@ -20,7 +20,7 @@ export class Login {
       .on(this);
   }
 
-  login() {
+  public login() {
     this.controller.validate().then(res => {
       if (res.valid) {
         this.authService.login(this.username, this.password)
