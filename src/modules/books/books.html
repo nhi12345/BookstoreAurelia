@@ -1,3 +1,12 @@
 <template>
-  <h1>${message}</h1>
+  <require from="./books.css"></require>
+  <div class="row">
+    <a repeat.for="book of books">
+      <div class="col-book">
+        <img src="${book.cover}">
+        <strong class="font-title">${book.name}</strong>
+        <small class="font-price">$${book.price}</small>
+      </div>
+    </a>
+  </div>
 </template>
