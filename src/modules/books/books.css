@@ -1,0 +1,33 @@
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 250px;
+  height: 390px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.row {
+  margin-left: 7%;
+}
+
+.col-book {
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.font-title {
+  margin-top: 5px;
+  color: rgb(1, 5, 53);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.font-price {
+  color: rgb(189, 36, 25);
+  font-size:18px
+}
