@@ -13,5 +13,10 @@ export class RequestService {
     })
         .then(response => response.json())
     }
+
+    public get(url: string): any {
+      return this.http.fetch(url)
+        .then(response => response.json());      
+    }
     
 }
