@@ -17,6 +17,7 @@ export class App {
     config.options.root = '/';
     config.map([
       {route: '', moduleId: PLATFORM.moduleName('./modules/login/login'), title: 'Login'},
+      {route: 'books', name: 'books', moduleId: PLATFORM.moduleName('./modules/books/books'), title: 'Books'}
     ]);
 
     this.router
