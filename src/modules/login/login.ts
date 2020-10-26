@@ -27,7 +27,7 @@ export class Login {
           .then((data: {token: string; message: string;}) => {
             if (data.token) {
               alert('Login success');
-              this.router.navigateToRoute('');
+              this.router.navigateToRoute('books');
             } else {
               alert(data.message);
             }
