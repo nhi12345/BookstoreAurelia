@@ -12,4 +12,9 @@ export class BookService {
   getBooks(): any {
     return this.requestService.get(this.constant.bookUrl);
   }
+
+  getBook(id: number): any {
+    let url = `${this.constant.bookUrl}${id}`;
+    return this.requestService.get(url);
+  }
 }

@@ -5,6 +5,7 @@ import {BookResponse} from 'models/book/BookResponse';
 export class Books {
 
   public books: BookResponse[];
+  public selectedId: number;
 
   constructor(private bookService: BookService) {
   }
@@ -14,4 +15,9 @@ export class Books {
       this.books = books;
     });
   }
+
+  public select(book: BookResponse) {
+    this.selectedId = book.id;
+    return true;
+}
 }

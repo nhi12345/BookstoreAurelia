@@ -1,7 +1,7 @@
-import { HttpTokenInterceptor } from './interceptors/http-token.interceptor';
 import {Router, RouterConfiguration} from 'aurelia-router';
 import {PLATFORM} from 'aurelia-pal';
 import { inject } from "aurelia-framework";
+import {HttpTokenInterceptor} from 'interceptors/http-token.interceptor';
 @inject(HttpTokenInterceptor)
 export class App {
   constructor(
@@ -17,7 +17,8 @@ export class App {
     config.options.root = '/';
     config.map([
       {route: '', moduleId: PLATFORM.moduleName('./modules/login/login'), title: 'Login'},
-      {route: 'books', name: 'books', moduleId: PLATFORM.moduleName('./modules/books/books'), title: 'Books'}
+      {route: 'books', name: 'books', moduleId: PLATFORM.moduleName('./modules/books/books'), title: 'Books'},
+      {route: 'books/:id', name: 'book-detail', moduleId: PLATFORM.moduleName('./modules/book-detail/book-detail'), title: 'Book'}
     ]);
 
     this.router

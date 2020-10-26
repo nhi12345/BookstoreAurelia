@@ -1,7 +1,8 @@
 <template>
   <require from="./books.css"></require>
   <div class="row">
-    <a repeat.for="book of books">
+    <a repeat.for="book of books" class="${book.id === $parent.selectedId ? 'active' : ''}" 
+    route-href="route: book-detail; params.bind: {id:book.id}" click.delegate="$parent.select(book)">
       <div class="col-book">
         <img src="${book.cover}">
         <strong class="font-title">${book.name}</strong>
