@@ -1,0 +1,14 @@
+.img-book-detail {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 400px;
+  height: 650px;
+  border-radius: 12px;
+  float: left;
+}
+
+.title-style {
+  font-size: 50px;
+  color: rgb(0, 48, 102);
+}

@@ -1,6 +1,7 @@
 import { inject } from 'aurelia-framework';
 import {BookResponse} from "models/book/bookResponse";
 import {BookService} from 'services/bookService';
+import './book-detail.css';
 
 @inject(BookService)
 export class BookDetail {
@@ -17,7 +18,7 @@ export class BookDetail {
     return this.bookService.getBook(params.id).then((book => {
         this.book = <BookResponse>book;
         this.router.navModel.setTitle(this.book.name);
-        // this.originalBook = JSON.parse(JSON.stringify(this.book));
+        this.originalBook = JSON.parse(JSON.stringify(this.book));
     }))
 }
 }
