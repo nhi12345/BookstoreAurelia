@@ -1,0 +1,36 @@
+<template>
+  <h2 class="title-style">New Book</h2>
+  <div class="form-style">
+    <div class="form-group field-style">
+      <label for="name">Book Name</label>
+      <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter book name">
+    </div>
+    <div class="form-group field-style">
+      <label for="price">Price</label>
+      <input type="text" class="form-control" id="price" placeholder="Enter book price">
+    </div>
+    <div class="form-group field-style">
+      <label for="publisher">Publisher</label>
+      <input type="text" class="form-control" id="publisher" placeholder="Enter book publisher">
+    </div>
+    <div class="form-group field-style">
+      <label for="description">Description</label>
+      <textarea type="text" class="form-control" id="description" placeholder="Enter book description"></textarea>
+    </div>
+    <div class="form-group field-style">
+      <label for="author">Author</label>
+      <select class="form-control" id="author">
+        <option>Author 1</option>
+        <option>Author 2</option>
+        <option>Author 3</option>
+        <option>Author 4</option>
+        <option>Author 5</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="cover">Choose a photo</label>
+      <input type="file" class="form-control-file" id="cover">
+    </div>  
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</template>

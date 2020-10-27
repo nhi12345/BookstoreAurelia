@@ -31,3 +31,8 @@ img {
   color: rgb(189, 36, 25);
   font-size:18px
 }
+
+.create-btn {
+  margin-left: 4%;
+  margin-top: 2%;
+}

@@ -1,6 +1,9 @@
 <template>
   <require from="./books.css"></require>
   <div class="row">
+    <button type="button" class="btn btn-secondary create-btn" click.delegate="createBook()"><i class="fa fa-book" aria-hidden="true">New Book</i></button>
+  </div>
+  <div class="row">
     <a repeat.for="book of books" class="${book.id === $parent.selectedId ? 'active' : ''}" 
     route-href="route: book-detail; params.bind: {id:book.id}" click.delegate="$parent.select(book)">
       <div class="col-book">
