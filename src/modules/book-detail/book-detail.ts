@@ -19,6 +19,6 @@ export class BookDetail {
         this.book = <BookResponse>book;
         this.router.navModel.setTitle(this.book.name);
         this.originalBook = JSON.parse(JSON.stringify(this.book));
-    }))
+    }));
 }
 }
