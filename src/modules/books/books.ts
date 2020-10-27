@@ -1,11 +1,11 @@
 import { Router } from 'aurelia-router';
 import {inject} from 'aurelia-framework'
 import {BookService} from 'services/bookService';
-import {BookResponse} from 'models/book/BookResponse';
+import {Book} from 'models/book/book';
 @inject(BookService, Router)
 export class Books {
 
-  public books: BookResponse[];
+  public books: Book[];
   public selectedId: number;
 
   constructor(
@@ -15,12 +15,12 @@ export class Books {
   }
 
   public created() {
-    this.bookService.getBooks().then((books: BookResponse[]) => {
+    this.bookService.getBooks().then((books: Book[]) => {
       this.books = books;
     });
   }
 
-  public select(book: BookResponse) {
+  public select(book: Book) {
     this.selectedId = book.id;
     return true;
   }

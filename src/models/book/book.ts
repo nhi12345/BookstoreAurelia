@@ -1,4 +1,4 @@
-export class BookResponse {
+export class Book {
   id: number;
   name: string;
   description: string;
