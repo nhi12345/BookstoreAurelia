@@ -7,6 +7,7 @@ export class RequestService {
   constructor(private http: HttpClient){}
 
     public post(params: any, url: string): any {
+      console.log(json(params));
       return this.http.fetch(url, {
         method: 'post',
         body: json(params)
