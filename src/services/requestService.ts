@@ -19,5 +19,11 @@ export class RequestService {
       return this.http.fetch(url)
         .then(response => response.json());      
     }
+
+    public delete(url: string): void {
+      this.http.fetch(url, {
+        method: 'delete',
+      });
+    }
     
 }

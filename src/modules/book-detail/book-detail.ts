@@ -1,24 +1,28 @@
-import { inject } from 'aurelia-framework';
+import { Router } from 'aurelia-router';
+import {inject} from 'aurelia-framework';
 import {Book} from "models/book/book";
 import {BookService} from 'services/bookService';
 import './book-detail.css';
 
-@inject(BookService)
+@inject(BookService, Router)
 export class BookDetail {
 
   public book: Book;
-  public router;
-  public originalBook: Book;
 
-  constructor(private bookService: BookService) {
+  constructor(
+    private bookService: BookService,
+    private router: Router,
+  ) {
   }
 
-  public activate(params, router) {
-    this.router = router;
+  public activate(params) {
     return this.bookService.getBook(params.id).then((book => {
-        this.book = <Book>book;
-        this.router.navModel.setTitle(this.book.name);
-        this.originalBook = JSON.parse(JSON.stringify(this.book));
+      this.book = <Book>book;
     }));
-}
+  }
+
+  deleteBook() {
+    let currentBookId = this.router.currentInstruction.params.id;
+    this.bookService.deleteBook(currentBookId);
+  }
 }

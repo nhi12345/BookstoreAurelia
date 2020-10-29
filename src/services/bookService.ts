@@ -22,4 +22,9 @@ export class BookService {
   createBook(book: Book): Promise<Book> {
     return this.requestService.post(book, this.constant.bookUrl);
   }
+
+  deleteBook(id: number): void {
+    let url = `${this.constant.bookUrl}${id}`;
+    this.requestService.delete(url);
+  }
 }
