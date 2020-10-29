@@ -1,17 +1,23 @@
-import { Router } from 'aurelia-router';
-import {inject} from 'aurelia-framework';
+import {Router} from 'aurelia-router';
+import {inject, bindable} from 'aurelia-framework';
 import {Book} from "models/book/book";
 import {BookService} from 'services/bookService';
 import './book-detail.css';
+import {DialogService} from 'aurelia-dialog';
+import {ConfirmModal} from 'modules/confirm-modal/confirm-modal';
 
-@inject(BookService, Router)
+@inject(BookService, Router, DialogService)
 export class BookDetail {
 
   public book: Book;
 
+  @bindable
+  action = () => {};
+
   constructor(
     private bookService: BookService,
     private router: Router,
+    private dialog: DialogService
   ) {
   }
 
@@ -23,6 +29,14 @@ export class BookDetail {
 
   deleteBook() {
     let currentBookId = this.router.currentInstruction.params.id;
-    this.bookService.deleteBook(currentBookId);
+    this.dialog.open({viewModel: ConfirmModal, model: 'You want to delete this book?'}).whenClosed().then(response => {
+      if (response.wasCancelled) {
+        return;
+      } else {
+        this.bookService.deleteBook(currentBookId);
+        alert('This book was successfully deleted.')
+        this.router.navigateToRoute('books');
+      }
+    });
   }
 }

@@ -20,7 +20,7 @@ export class RequestService {
         .then(response => response.json());      
     }
 
-    public delete(url: string): void {
+    public delete(url: string): any {
       this.http.fetch(url, {
         method: 'delete',
       });
