@@ -15,6 +15,9 @@ export class Books {
   }
 
   public created() {
+    if (!window.localStorage.getItem('token')) {
+      this.router.navigateToRoute('login');
+    }
     this.bookService.getBooks().then((books: Book[]) => {
       this.books = books;
     });
