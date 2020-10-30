@@ -27,4 +27,10 @@ export class BookService {
     let url = `${this.constant.bookUrl}${id}`;
     this.requestService.delete(url);
   }
+
+  updateBook(id: number, book: Book): Promise<Book> {
+    let url = `${this.constant.bookUrl}${id}`;
+    return this.requestService.update(book, url);
+  }
+  
 }

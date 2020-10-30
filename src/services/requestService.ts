@@ -7,7 +7,6 @@ export class RequestService {
   constructor(private http: HttpClient){}
 
     public post(params: any, url: string): any {
-      console.log(json(params));
       return this.http.fetch(url, {
         method: 'post',
         body: json(params)
@@ -24,6 +23,14 @@ export class RequestService {
       this.http.fetch(url, {
         method: 'delete',
       });
+    }
+
+    public update(params: any, url: string): any {
+      return this.http.fetch(url, {
+        method: 'put',
+        body: json(params)
+    })
+        .then(response => response.json());
     }
     
 }

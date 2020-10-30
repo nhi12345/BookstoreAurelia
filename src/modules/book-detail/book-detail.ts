@@ -46,8 +46,10 @@ export class BookDetail {
       if (response.wasCancelled) {
         return;
       } else {
-        alert('This book was successfully deleted.')
-        this.router.navigateToRoute('books');
+        let currentBookId = this.router.currentInstruction.params.id;
+        this.bookService.getBook(currentBookId).then((book => {
+          this.book = <Book>book;
+        }));
       }
     });
   }
