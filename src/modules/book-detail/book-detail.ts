@@ -42,7 +42,7 @@ export class BookDetail {
   }
 
   updateBook() {
-    this.dialog.open({viewModel: UpdateBook, model: 'You want to delete this book?'}).whenClosed().then(response => {
+    this.dialog.open({viewModel: UpdateBook}).whenClosed().then(response => {
       if (response.wasCancelled) {
         return;
       } else {
@@ -50,6 +50,7 @@ export class BookDetail {
         this.bookService.getBook(currentBookId).then((book => {
           this.book = <Book>book;
         }));
+        alert('Success');
       }
     });
   }
