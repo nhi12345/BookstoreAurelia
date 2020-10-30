@@ -10,7 +10,7 @@
       <h3><i class="fa fa-bookmark" aria-hidden="true"> Publisher: ${book.publisher}</i></h3>
       <h3><i class="fa fa-calendar" aria-hidden="true"> Year: ${book.publisher}</i></h3>
       <h3><i class="fa fa-map-o" aria-hidden="true"> Description: ${book.description}</i></h3>
-      <button type="button" class="btn btn-warning">Edit</button>
+      <button type="button" class="btn btn-warning" click.delegate="updateBook()">Edit</button>
       <button type="button" class="btn btn-danger" click.delegate="deleteBook()">Delete</button>
     </div>
   </div>

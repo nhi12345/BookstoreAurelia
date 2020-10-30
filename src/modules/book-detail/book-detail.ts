@@ -5,6 +5,7 @@ import {BookService} from 'services/bookService';
 import './book-detail.css';
 import {DialogService} from 'aurelia-dialog';
 import {ConfirmModal} from 'modules/confirm-modal/confirm-modal';
+import {UpdateBook} from 'modules/update-book/update-book';
 
 @inject(BookService, Router, DialogService)
 export class BookDetail {
@@ -34,6 +35,17 @@ export class BookDetail {
         return;
       } else {
         this.bookService.deleteBook(currentBookId);
+        alert('This book was successfully deleted.')
+        this.router.navigateToRoute('books');
+      }
+    });
+  }
+
+  updateBook() {
+    this.dialog.open({viewModel: UpdateBook, model: 'You want to delete this book?'}).whenClosed().then(response => {
+      if (response.wasCancelled) {
+        return;
+      } else {
         alert('This book was successfully deleted.')
         this.router.navigateToRoute('books');
       }

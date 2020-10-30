@@ -34,13 +34,11 @@ export class NewBook {
   created() {
     this.authorService.getAuthors().then((authors) => {
       this.authors = authors;
-      console.log(authors);
     });
   }
 
   public submit() {
     this.controller.validate().then(res => {
-      console.log(res);
       if (res.valid) {
         const reader = new FileReader();
         reader.readAsDataURL(this.cover[0]);
