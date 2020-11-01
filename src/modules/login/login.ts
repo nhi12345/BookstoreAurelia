@@ -8,6 +8,7 @@ export class Login {
 
   public username: string;
   public password: string;
+  public message: string = '';
 
   constructor(
     private authService: AuthService,
@@ -21,6 +22,7 @@ export class Login {
   }
 
   public login() {
+    this.message = '';
     this.controller.validate().then(res => {
       if (res.valid) {
         this.authService.login(this.username, this.password)
@@ -28,7 +30,7 @@ export class Login {
             if (data.token) {
               this.router.navigateToRoute('books');
             } else {
-              alert(data.message);
+              this.message = data.message;
             }
           });
       }
