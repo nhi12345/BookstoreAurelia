@@ -1,16 +1,35 @@
 <template>
   <require from="./books.css"></require>
   <div class="row">
-    <button type="button" class="btn btn-secondary create-btn" click.delegate="createBook()"><i class="fa fa-book" aria-hidden="true">New Book</i></button>
+    <div class="col search-form">
+      <form submit.delegate="search()">
+        <input type="text" value.bind="bookName" class="form-control search-field" id="bookName"
+          placeholder="Search book">
+      </form>
+    </div>
+    <div class="col">
+      <select class="form-control author-search" id="author" value.bind="authorSelected" change.delegate="dropdownChanged(authorSelected)">
+        <option selected>Choose...</option>
+        <option repeat.for="author of authors" model.bind="author">${author.name}</option>
+      </select>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-secondary create-btn" click.delegate="createBook()"><i class="fa fa-book"
+          aria-hidden="true">New Book</i></button>
+    </div>
   </div>
   <div class="row">
-    <a repeat.for="book of books" class="${book.id === $parent.selectedId ? 'active' : ''}" 
-    route-href="route: book-detail; params.bind: {id:book.id}" click.delegate="$parent.select(book)">
+    <a repeat.for="book of books" class="${book.id === $parent.selectedId ? 'active' : ''}"
+      route-href="route: book-detail; params.bind: {id:book.id}" click.delegate="$parent.select(book)">
       <div class="col-book">
         <img src="${book.cover}">
         <strong class="font-title">${book.name}</strong>
         <small class="font-price">$${book.price}</small>
       </div>
     </a>
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-primary previous-btn" click.delegate="goToPreviousPage()">Previous</button>
+    <button type="button" class="btn btn-primary next-btn" click.delegate="goToNextPage()">Next</button>
   </div>
 </template>

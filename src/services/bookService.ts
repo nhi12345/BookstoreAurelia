@@ -10,8 +10,20 @@ export class BookService {
   ) {
   }
 
-  getBooks(): Promise<Book[]> {
-    return this.requestService.get(this.constant.bookUrl);
+  getAllBooks(bookName: string, authorId: number): Promise<Book[]> {
+    let url = `${this.constant.bookUrl}?bookName=${bookName}`;
+    if (authorId === 0) {
+      url = `${this.constant.bookUrl}?authorId=&bookName=${bookName}`;
+    }
+    return this.requestService.get(url);
+  }
+
+  getBooksPaginationAndFilter(authorId: number, bookName: string, pageNumber: number, pageSize: number): Promise<Book[]> {
+    let url = `${this.constant.bookUrl}?authorId=${authorId}&bookName=${bookName}&pageSize=${pageSize}&pageNumber=${pageNumber}`;
+    if (authorId === 0) {
+      url = `${this.constant.bookUrl}?authorId=&bookName=${bookName}&pageSize=${pageSize}&pageNumber=${pageNumber}`;
+    }
+    return this.requestService.get(url);
   }
 
   getBook(id: number): Promise<Book> {
