@@ -13,6 +13,7 @@ export class UpdateBook {
   public price: number;
   public year: number;
   public authors: Author[];
+  public cover: File = null;
   public currentBookId = this.router.currentInstruction.params.id;
   constructor(
     private dialog: DialogController,
@@ -45,9 +46,20 @@ export class UpdateBook {
         this.book.price = parseFloat(this.price+'');
         this.book.year = parseFloat(this.year+'');
         this.book.cover = null;
-        this.bookService.updateBook(this.currentBookId, this.book).then((book) => {
-          this.book = book;
-        });
+        if (this.cover != null) {
+          const reader = new FileReader();
+        reader.readAsDataURL(this.cover[0]);
+        reader.onload = () => {
+          this.book.cover = reader.result.toString().split(`,`)[1];
+          this.bookService.updateBook(this.currentBookId, this.book).then((book) => {
+            this.book = book;
+          });
+        }
+        } else {
+          this.bookService.updateBook(this.currentBookId, this.book).then((book) => {
+            this.book = book;
+          });
+        }
         this.dialog.ok();
       }
     });
