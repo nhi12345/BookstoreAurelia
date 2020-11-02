@@ -1,0 +1,15 @@
+.title-style {
+  text-align: center;
+}
+
+.field-style {
+  width: 50%;
+}
+
+.form-style {
+  margin-left: 35%;
+}
+
+.error-mess {
+  color: rgb(226, 77, 77);
+}

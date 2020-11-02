@@ -1,0 +1,17 @@
+<template>
+  <div class="row form-detail">
+    <div class="col-sm-5 col-md-4">
+      <img class="img-book-detail" src="${book.cover}">
+    </div>
+    <div class="col-6">
+      <strong class="title-style">${book.name}</strong>
+      <h3><i class="fa fa-user" aria-hidden="true"> Author: ${book.author.name}</i></h3>
+      <h3><i class="fa fa-usd" aria-hidden="true"> Price: $${book.price}</i></h3>
+      <h3><i class="fa fa-bookmark" aria-hidden="true"> Publisher: ${book.publisher}</i></h3>
+      <h3><i class="fa fa-calendar" aria-hidden="true"> Year: ${book.year}</i></h3>
+      <h3><i class="fa fa-map-o" aria-hidden="true"> Description: ${book.description}</i></h3>
+      <button type="button" class="btn btn-warning" click.delegate="updateBook()">Edit</button>
+      <button type="button" class="btn btn-danger" click.delegate="deleteBook()">Delete</button>
+    </div>
+  </div>
+</template>
